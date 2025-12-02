@@ -4,7 +4,10 @@ if [ "$MODE" = "easy" ]; then
     exec rsgain easy $OPTIONS /music
 elif [ "$MODE" = "custom" ]; then
     # Find all supported audio files recursively in /music
-    AUDIO_FILES=$(find /music -type f \( \
+
+    echo "Searching for audio files in /music..."
+
+    mapfile -t AUDIO_FILES < <(find /music -type f \( \
         -iname "*.aiff" -o \
         -iname "*.flac" -o \
         -iname "*.ape" -o \
@@ -21,11 +24,14 @@ elif [ "$MODE" = "custom" ]; then
         -iname "*.wv" -o \
         -iname "*.wma" \
     \))
-    if [ -z "$AUDIO_FILES" ]; then
+    if [ ${#AUDIO_FILES[@]} -eq 0 ]; then
         echo "No audio files found in /music"
         exit 1
     fi
-    exec rsgain custom $OPTIONS $AUDIO_FILES
+
+    echo "Found ${#AUDIO_FILES[@]} audio files. Running rsgain custom..."
+
+    exec rsgain custom $OPTIONS "${AUDIO_FILES[@]}"
 else
     echo "Invalid MODE: $MODE. Must be 'easy' or 'custom'"
     exit 1
