@@ -7,7 +7,7 @@ A Docker container that runs rsgain (ReplayGain scanner) on a mounted music volu
 Pull the pre-built image from Docker Hub:
 
 ```bash
-docker pull yourusername/rsgain-runner:latest
+docker pull themranderson/rsgain-runner:latest
 ```
 
 Then run it:
@@ -17,7 +17,7 @@ docker run -d \
   -v /path/to/your/music:/music \
   -e MODE=easy \
   -e OPTIONS="-m MAX" \
-  yourusername/rsgain-runner:latest
+  themranderson/rsgain-runner:latest
 ```
 
 ## Features
