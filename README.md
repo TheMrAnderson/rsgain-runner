@@ -75,7 +75,7 @@ docker run -d \
 ```
 
 - `MODE`: Set to `custom` for custom mode (scans all supported audio files recursively in /music)
-- `OPTIONS`: Additional options for rsgain custom, e.g., `-a` for album tags, `-s i` for tag mode
+- `OPTIONS`: Additional options for rsgain custom, e.g., `-a` for album tags, `-s i` for tag mode. [Full documentation](https://github.com/complexlogic/rsgain?tab=readme-ov-file#custom-mode)
 
 ## Keeping Up to Date
 

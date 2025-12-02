@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source environment variables
+. /etc/environment
+
 if [ "$MODE" = "easy" ]; then
     exec rsgain easy $OPTIONS /music
 elif [ "$MODE" = "custom" ]; then
