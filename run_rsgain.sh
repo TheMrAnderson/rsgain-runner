@@ -32,9 +32,13 @@ elif [ "$MODE" = "custom" ]; then
         exit 1
     fi
 
-    echo "Found ${#AUDIO_FILES[@]} audio files. Running rsgain custom..."
+    echo "Found ${#AUDIO_FILES[@]} audio files. Processing rsgain custom..."
 
-    exec rsgain custom $OPTIONS "${AUDIO_FILES[@]}"
+    for file in "${AUDIO_FILES[@]}"; do
+        rsgain custom $OPTIONS "$file" || echo "Failed to process $file"
+    done
+
+    echo "rsgain processing completed."
 else
     echo "Invalid MODE: $MODE. Must be 'easy' or 'custom'"
     exit 1

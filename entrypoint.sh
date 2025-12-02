@@ -12,7 +12,7 @@ touch /var/log/rsgain.log
     echo "MODE: $MODE"
     echo "OPTIONS: $OPTIONS"
     echo "SCHEDULE: $SCHEDULE"
-    echo "Next cron execution: $(date -d "next $SCHEDULE" 2>/dev/null || echo 'Check cron syntax')"
+    echo "Cron job configured and ready."
     echo "=============================="
 } >> /var/log/rsgain.log
 
