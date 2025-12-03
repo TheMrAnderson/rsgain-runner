@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exec > /var/log/rsgain.log 2>&1
-
 if [ "$MODE" = "easy" ]; then
     exec rsgain easy $OPTIONS /music
 elif [ "$MODE" = "custom" ]; then

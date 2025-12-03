@@ -5,19 +5,19 @@ touch /var/log/rsgain.log
 
 # Log configuration for verification
 {
-    echo "=== rsgain-runner startup ==="
-    echo "MODE: $MODE"
-    echo "OPTIONS: $OPTIONS"
-    echo "SCHEDULE: $SCHEDULE"
+    echo "=== rsgain-runner startup at $(date) ==="
+    echo "MODE: '$MODE'"
+    echo "OPTIONS: '$OPTIONS'"
+    echo "SCHEDULE: '$SCHEDULE'"
     echo "Cron job configured and ready."
     echo "=============================="
 } >> /var/log/rsgain.log
 
 # Set up cron job with output to log file
-echo "$SCHEDULE MODE=\"$MODE\" OPTIONS=\"$OPTIONS\" /usr/local/bin/run_rsgain.sh" | crontab -
+echo "$SCHEDULE MODE=\"$MODE\" OPTIONS=\"$OPTIONS\" /usr/local/bin/run_rsgain.sh >> /var/log/rsgain.log 2>&1" | crontab -
 
 # Run initial scan on startup
-/usr/local/bin/run_rsgain.sh
+/usr/local/bin/run_rsgain.sh >> /var/log/rsgain.log 2>&1
 
 # Start cron in background
 cron
