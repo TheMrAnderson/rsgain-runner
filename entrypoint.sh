@@ -3,9 +3,6 @@
 # Create log file
 touch /var/log/rsgain.log
 
-# Debug: log all env vars
-env | grep -E 'MODE|OPTIONS|SCHEDULE' >> /var/log/rsgain.log
-
 # Log configuration for verification
 {
     echo "=== rsgain-runner startup at $(date) ==="
