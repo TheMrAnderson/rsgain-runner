@@ -3,6 +3,9 @@
 # Create log file
 touch /var/log/rsgain.log
 
+# Debug: log all env vars
+env | grep -E 'MODE|OPTIONS|SCHEDULE' >> /var/log/rsgain.log
+
 # Log configuration for verification
 {
     echo "=== rsgain-runner startup at $(date) ==="
@@ -22,5 +25,6 @@ echo "$SCHEDULE MODE=\"$MODE\" OPTIONS=\"$OPTIONS\" /usr/local/bin/run_rsgain.sh
 # Start cron in background
 cron
 
-# Tail the log file in foreground for real-time logs
+# Output existing log content and follow new lines
+cat /var/log/rsgain.log
 tail -f /var/log/rsgain.log
