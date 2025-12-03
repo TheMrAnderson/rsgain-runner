@@ -20,7 +20,7 @@ env | grep -E 'MODE|OPTIONS|SCHEDULE' >> /var/log/rsgain.log
 echo "$SCHEDULE MODE=\"$MODE\" OPTIONS=\"$OPTIONS\" /usr/local/bin/run_rsgain.sh >> /var/log/rsgain.log 2>&1" | crontab -
 
 # Run initial scan on startup
-/usr/local/bin/run_rsgain.sh >> /var/log/rsgain.log 2>&1
+# /usr/local/bin/run_rsgain.sh >> /var/log/rsgain.log 2>&1
 
 # Start cron in background
 cron
