@@ -16,6 +16,9 @@ touch /var/log/rsgain.log
 # Set up cron job with output to log file
 echo "$SCHEDULE MODE=\"$MODE\" OPTIONS=\"$OPTIONS\" /usr/local/bin/run_rsgain.sh" | crontab -
 
+# Run initial scan on startup
+/usr/local/bin/run_rsgain.sh
+
 # Start cron in background
 cron
 

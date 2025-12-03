@@ -34,7 +34,6 @@ elif [ "$MODE" = "custom" ]; then
     echo "Found ${#AUDIO_FILES[@]} audio files. Processing rsgain custom..."
 
     for file in "${AUDIO_FILES[@]}"; do
-        echo "Processing $file"
         output=$(rsgain custom $OPTIONS "$file" 2>&1)
         if [ $? -ne 0 ]; then
             echo "Failed to process $file"
