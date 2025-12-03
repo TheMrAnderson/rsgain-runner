@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Source environment variables
-. /etc/environment
+exec > /var/log/rsgain.log 2>&1
 
 if [ "$MODE" = "easy" ]; then
     exec rsgain easy $OPTIONS /music
@@ -35,7 +34,12 @@ elif [ "$MODE" = "custom" ]; then
     echo "Found ${#AUDIO_FILES[@]} audio files. Processing rsgain custom..."
 
     for file in "${AUDIO_FILES[@]}"; do
-        rsgain custom $OPTIONS "$file" || echo "Failed to process $file"
+        echo "Processing $file"
+        output=$(rsgain custom $OPTIONS "$file" 2>&1)
+        if [ $? -ne 0 ]; then
+            echo "Failed to process $file"
+            echo "Error details: $output"
+        fi
     done
 
     echo "rsgain processing completed."
